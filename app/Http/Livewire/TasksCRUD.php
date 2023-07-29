@@ -13,7 +13,7 @@ class TasksCRUD extends Component
     use WithPagination;
     use WithSorting;
 
-    public $name, $editing;
+    public $name, $editing, $confirming;
 
     public $rules = [
         'editing.name' => 'required',
@@ -31,6 +31,7 @@ class TasksCRUD extends Component
 
     public function edit(Task $task): void
     {
+        $this->reset('editing');
         $this->editing = $task;
     }
 
@@ -38,7 +39,29 @@ class TasksCRUD extends Component
     {
         $this->validate();
         $this->editing->save();
+        $this->dispatchBrowserEvent('closeModal');
 
         session()->flash('success', 'Task has been successfully saved!');
+    }
+
+    public function updated(): void
+    {
+        if ($this->editing->id){
+            $this->validate();
+            $this->editing->save();
+            $this->emit('dismissAlert');
+
+            session()->flash('success', 'Task has been successfully saved!');
+        }
+    }
+
+    public function confirmDelete($skill): void
+    {
+        $this->confirming = $skill;
+    }
+
+    public function cancelDelete(): void
+    {
+        $this->reset('confirming');
     }
 }

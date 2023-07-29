@@ -103,7 +103,26 @@
                                         {{ Carbon\Carbon::parse($taskItem->due_date)->format('d.m.Y') }}
                                     </td>
                                     <td class="text-center">
+                                        <button wire:click="edit({{ $taskItem->id }})" role="button" data-toggle="modal" data-target="#edit_task"
+                                                class="btn btn-sm btn-default btn-text-primary btn-hover-primary btn-icon mr-2"><i
+                                                class="flaticon-edit"></i>
+                                        </button>
 
+                                        @if($confirming === $taskItem->id)
+                                            <button wire:click="delete({{ $taskItem->id }})" role="button"
+                                                    class="btn btn-sm btn-success btn-text-success btn-hover-success btn-icon mr-2">
+                                                Yes
+                                            </button>
+                                            <button wire:click="cancelDelete()" role="button"
+                                                    class="btn btn-sm btn-danger btn-icon mr-2">
+                                                No
+                                            </button>
+                                        @else
+                                            <button wire:click="confirmDelete({{ $taskItem->id }})" role="button"
+                                                    class="btn btn-sm btn-danger btn-icon mr-2">
+                                                <i class="flaticon-delete"></i>
+                                            </button>
+                                        @endif
                                     </td>
                                 </tr>
                             @empty
