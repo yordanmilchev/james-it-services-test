@@ -4,9 +4,8 @@
         <div id="kt_header_menu" class="kt-header-menu kt-header-menu-mobile  kt-header-menu--layout-default ">
             <ul class="kt-menu__nav ">
                 <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel
-{{--                {{ $routeName == 'admin.dashboard' ? 'kt-menu__item--active' : '' }}--}}
-                ">
-                    <a href="/" class="kt-menu__link">
+                {{ $routeName == 'homepage' ? 'kt-menu__item--active' : '' }}">
+                    <a href="{{ route('homepage') }}" class="kt-menu__link">
                         <span class="kt-menu__link-text"><i class="fa fa-tachometer-alt"></i> &nbsp; Dashboard</span>
                     </a>
                 </li>

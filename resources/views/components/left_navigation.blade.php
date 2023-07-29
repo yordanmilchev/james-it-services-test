@@ -27,11 +27,11 @@
         <div id="kt_aside_menu" class="kt-aside-menu " data-ktmenu-vertical="1" data-ktmenu-scroll="1"
             data-ktmenu-dropdown-timeout="500">
             <ul class="kt-menu__nav ">
-                <li class="kt-menu__item  kt-menu__item {{ str_contains($routeName, 'tasks') ? 'kt-menu__item--active' : '' }} {{ str_contains($routeName, 'admin.speedy.') ? 'kt-menu__item--active' : '' }}" aria-haspopup="true">
-                    <a href="{{ route('tasks') }}" class="kt-menu__link js-loader">
-                            <span class="kt-menu__link-icon">
-                                <i class="fas fa-tasks"></i>
-                            </span><span class="kt-menu__link-text">Tasks</span></a>
+                <li class="kt-menu__item  kt-menu__item {{ str_contains($routeName, 'tasks') ? 'kt-menu__item--active' : '' }}" aria-haspopup="true">
+                    <a href="/tasks" class="kt-menu__link js-loader">
+                        <span class="kt-menu__link-icon">
+                            <i class="fas fa-tasks"></i>
+                        </span><span class="kt-menu__link-text">Tasks</span></a>
                 </li>
             </ul>
         </div>

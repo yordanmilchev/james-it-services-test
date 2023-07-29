@@ -1,6 +1,6 @@
 <div>
     <!--begin::Portlet-->
-    <div class="kt-portlet" id="kt_portlet_filters_form">
+    <div class="kt-portlet {{ $showFilters ? '' : 'kt-portlet--collapsed' }}" id="kt_portlet_filters_form">
         <div class="kt-portlet__head kt-ribbon kt-ribbon--success">
             <div class="kt-ribbon__target" style="top: 15px; left: -14px;"><i class="fa fa-search"></i></div>
             <div class="kt-portlet__head-label"
@@ -54,7 +54,7 @@
                     @include('components.flashes')
 
                     <div class="table-responsive mb-4 text-right">
-                        <button wire:click="edit" type="button" class="btn btn-label-brand btn-bold text-right ml-auto" data-toggle="modal" data-target="#edit_task">New Task</button>
+                        <button wire:click="create" type="button" class="btn btn-label-brand btn-bold text-right ml-auto" data-toggle="modal" data-target="#edit_task">New Task</button>
                     </div>
 
                     <div class="table-responsive">

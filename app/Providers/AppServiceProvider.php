@@ -20,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::composer('components.left_navigation', function ($view) {
+        View::composer(['components.left_navigation', 'components.header'], function ($view) {
             $view->with('routeName', \Route::currentRouteName());
         });
     }
