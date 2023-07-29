@@ -13,7 +13,7 @@ class TasksCRUD extends Component
     use WithPagination;
     use WithSorting;
 
-    public $name, $editing, $confirming, $showFilters = false;
+    public $name, $editing, $confirming, $showFilters = false, $from_date, $to_date;
 
     public $rules = [
         'editing.name' => 'required|string|max:255',
@@ -30,10 +30,27 @@ class TasksCRUD extends Component
             $this->showFilters = true;
         }
 
+        if ($this->from_date){
+            $tasksQb->whereDate('due_date', '>=', $this->from_date);
+            $this->showFilters = true;
+        }
+
+        if ($this->to_date){
+            $tasksQb->whereDate('due_date', '<=', $this->to_date);
+            $this->showFilters = true;
+        }
+
         return view('livewire.tasks-c-r-u-d', [
             'tasks' => $tasksQb->orderBy($this->sortField, $this->sortDirection)
                 ->paginate(15)
         ]);
+    }
+
+    protected $listeners = ['filtersCleared'];
+
+    public function filtersCleared(): void
+    {
+        $this->resetExcept();
     }
 
     public function edit(Task $task): void
@@ -50,10 +67,9 @@ class TasksCRUD extends Component
     {
         $this->validate();
         $this->editing->save();
-        $this->dispatchBrowserEvent('closeModal');
-        $this->reset('editing');
-
         session()->flash('success', 'Task has been successfully saved!');
+
+        $this->dispatchBrowserEvent('closeModal');
     }
 
     public function updated(): void
@@ -67,9 +83,9 @@ class TasksCRUD extends Component
         }
     }
 
-    public function confirmDelete($skill): void
+    public function confirmDelete($task): void
     {
-        $this->confirming = $skill;
+        $this->confirming = $task;
     }
 
     public function cancelDelete(): void
@@ -81,6 +97,7 @@ class TasksCRUD extends Component
     {
         $this->editing = $task;
         $taskName = $this->editing->name;
+        $this->emit('dismissAlert');
 
         try {
             $this->editing->delete();

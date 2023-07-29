@@ -4,7 +4,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">
-                        {{ isset($editing->id) ? 'Edit': 'Create New' }} qualification <strong>{{ isset($editing->id) ? $editing->name : '' }}</strong>
+                        {{ isset($editing->id) ? 'Edit': 'Create New' }} Task <strong>{{ isset($editing->id) ? $editing->name : '' }}</strong>
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     </button>

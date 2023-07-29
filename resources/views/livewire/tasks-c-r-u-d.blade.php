@@ -28,7 +28,7 @@
         <!--begin::Form-->
         <div class="kt-portlet__body" id="filters_form">
             <div class="form-group row">
-                <div class="col-lg-4 mt-3">
+                <div class="col-lg-4">
                     <label>Name:</label>
                     <div class="input-group">
                         <div class="input-group-prepend"><span class="input-group-text">
@@ -37,6 +37,27 @@
                         <input wire:model="name" type="text"
                                class="form-control">
 
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <label>Due Date from:</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend"><span class="input-group-text">
+                                <i class="fa fa-clock"></i>
+                            </span></div>
+
+                        <input wire:model.lazy="from_date" type="date" max="{{ $to_date }}" class="form-control">
+
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <label>Due Date until:</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend"><span class="input-group-text">
+                                <i class="fa fa-clock"></i>
+                            </span></div>
+
+                        <input wire:model.lazy="to_date" type="date" min="{{ $from_date }}" class="form-control">
                     </div>
                 </div>
             </div>
@@ -64,8 +85,8 @@
                         <table class="table table-bordered table-striped">
                             <thead class="thead-light">
                             <tr>
-                                <th wire:click="sortBy('id')" class="text-center font-weight-bold" style="cursor:pointer;">ID
-                                    @if($sortField == 'id')
+                                <th wire:click="sortBy('created_at')" class="text-center font-weight-bold" style="cursor:pointer;">Created
+                                    @if($sortField == 'created_at')
                                         @include('components.sorting_arrow')
                                     @endif
                                 </th>
@@ -89,9 +110,9 @@
                             </thead>
                             <tbody>
                             @forelse ($tasks as $taskItem)
-                                <tr>
-                                    <td class="text-center" style="width: 1%;">
-                                        {{ $taskItem->id }}
+                                <tr wire:key="{{ $taskItem->id }}">
+                                    <td class="text-center">
+                                        {{ Carbon\Carbon::parse($taskItem->created_at)->format('d.m.Y H:i') }}
                                     </td>
                                     <td class="text-center">
                                         {{ $taskItem->name }}

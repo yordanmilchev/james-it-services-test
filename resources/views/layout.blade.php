@@ -24,7 +24,6 @@
     <link href="{{ asset('css/skins/header/menu/light.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('css/skins/brand/light.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('css/skins/aside/light.css') }}" rel="stylesheet" type="text/css"/>
-{{--    <link href="{{ asset('css/vendor/jquery.loadingModal.min.css') }}" rel="stylesheet" type="text/css"/>--}}
     <link href="{{ asset('css/appCustom.css')}}" rel="stylesheet" type="text/css"/>
     <!--end::Layout Skins -->
 @show
@@ -32,29 +31,11 @@
 <!--begin::Page Custom Styles(used by this page) -->
 @yield('page_css')
 <!--end::Page Custom Styles -->
-{{--    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/images/logo.ico') }}"/>--}}
-    <!-- bootstrap-select component -->
-{{--    <link rel="stylesheet" href="{{ asset('css/bootstrap-select.min.css') }}">--}}
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/images/cropped-OGHIazP-32x32.png') }}"/>
 
-    @section('head_js')
-        {{-- some javascript libraries need to be in head like amCharts --}}
-    @show
-
-    <style>
-        .kt-pulse.kt-pulse--brand .kt-pulse__ring { border-color: rgba(255, 214, 10, 0.8); border-width: 6px; }
-        .kt-checkbox > span { width: 25px; height: 25px; }
-        .kt-checkbox > span:after { margin-top: -15px; margin-left: -5px; width: 10px; height: 20px; border: 1px solid #28a745; }
-        .border-radius { border-radius: 8px; }
-
-        .btn.btn-label-dark-warning {
-            background-color: rgba(255, 87, 51, 0.2);
-            color: #ffb822;
-            cursor: text !important;
-        }
-    </style>
 </head>
 
-<body class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--enabled kt-subheader--fixed kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-page--loading">
+<body class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--enabled kt-subheader--fixed kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-page--loading kt-aside--minimize">
 
 @section('mobile_head_menu')
     @include('components.mobile_head_menu')
@@ -128,6 +109,9 @@
     <script>
         window.addEventListener('closeModal', e => {
             $('.modal').modal('hide');
+            setTimeout(function() {
+                $(".alert-dismissible").fadeOut('fast');
+            }, 3000);
         });
     </script>
 
@@ -143,9 +127,6 @@
     <!--begin::Global Theme Bundle(used by all pages) -->
     <script src="{{ asset('plugins/global/plugins.bundle.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/scripts.bundle.min.js') }}" type="text/javascript"></script>
-{{--    <script src="{{ asset('vendor/disableAutoFill/jquery.disableAutoFill.min.js') }}" type="text/javascript"></script>--}}
-{{--    <script src="{{ asset('js/vendor/jquery.loadingModal.min.js') }}" type="text/javascript"></script>--}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
     <!--end::Global Theme Bundle -->
 @show
 
@@ -154,11 +135,6 @@
 @section('page_js')
     <script>
         $(document).ready(function (e) {
-            $('.go-back-btn').on('click', function (event) {
-                event.preventDefault();
-                window.history.go(-1);
-            });
-
             $('.js-loader').on('click', function (e) {
                 $('body').loadingModal({
                     text: 'Зареждане...',
