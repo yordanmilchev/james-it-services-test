@@ -102,7 +102,7 @@
                                     <td class="text-center">
                                         {{ Carbon\Carbon::parse($taskItem->due_date)->format('d.m.Y') }}
                                     </td>
-                                    <td class="text-center">
+                                    <td class="d-flex justify-content-center">
                                         <button wire:click="edit({{ $taskItem->id }})" role="button" data-toggle="modal" data-target="#edit_task"
                                                 class="btn btn-sm btn-default btn-text-primary btn-hover-primary btn-icon mr-2"><i
                                                 class="flaticon-edit"></i>
