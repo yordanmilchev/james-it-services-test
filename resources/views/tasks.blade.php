@@ -8,12 +8,8 @@
     Tasks
 @endsection
 
-@section('subheader_group')
-
-@endsection
-
 @section('body_content')
-{{--    <livewire:admin.clients.client-list />--}}
+    <livewire:tasks-c-r-u-d />
 @endsection
 
 @section('page_js')
