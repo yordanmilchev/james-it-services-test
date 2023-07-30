@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
     }
 
     /**
-     * Bootstrap any application services.
+     * Pass variable to certain blades.
      */
     public function boot(): void
     {

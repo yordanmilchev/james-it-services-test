@@ -1,5 +1,5 @@
-<form wire:submit.prevent="save">
-    <div wire:ignore.self class="modal fade" id="edit_task" tabindex="-1" role="dialog" aria-labelledby="edit_task" aria-hidden="true">
+<form wire:submit.prevent="save"> <!-- Submit form to save method in component -->
+    <div wire:ignore.self class="modal fade" id="edit_task" tabindex="-1" role="dialog" aria-labelledby="edit_task" aria-hidden="true"> <!-- Ignore DOM update -->
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -12,6 +12,7 @@
                 <div class="modal-body">
                     @include('components.flashes')
 
+                    <!-- Begin modal inputs section -->
                     <div class="form-group row">
                         <label for="editing.name" class="col-12">Name</label>
                         <div class="col-12">
@@ -62,6 +63,7 @@
                             @enderror
                         </div>
                     </div>
+                    <!-- End modal inputs section -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

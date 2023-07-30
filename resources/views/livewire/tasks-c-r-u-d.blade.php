@@ -25,7 +25,7 @@
                 </div>
             </div>
         </div>
-        <!--begin::Form-->
+        <!--begin::Page filters-->
         <div class="kt-portlet__body" id="filters_form">
             <div class="form-group row">
                 <div class="col-lg-4">
@@ -62,7 +62,7 @@
                 </div>
             </div>
         </div>
-        <!--end::Form-->
+        <!--end::Page filters-->
     </div>
     <!--end::Portlet-->
 
@@ -79,12 +79,13 @@
                     </div>
 
                     <div class="table-responsive">
-                        {{ $tasks->links() }}
+                        {{ $tasks->links() }} <!-- Show pagination links -->
                     </div>
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped">
                             <thead class="thead-light">
                             <tr>
+                                <!-- Begin table headers with sorting -->
                                 <th wire:click="sortBy('created_at')" class="text-center font-weight-bold" style="cursor:pointer;">Created
                                     @if($sortField == 'created_at')
                                         @include('components.sorting_arrow')
@@ -106,6 +107,7 @@
                                     @endif
                                 </th>
                                 <th class="text-center font-weight-bold">Actions</th>
+                                <!-- End table headers with sorting -->
                             </tr>
                             </thead>
                             <tbody>
@@ -155,7 +157,7 @@
                         </table>
                     </div>
                     <div class="table-responsive">
-                        {{ $tasks->links() }}
+                        {{ $tasks->links() }} <!-- Show pagination links -->
                     </div>
                 </div>
             </div>

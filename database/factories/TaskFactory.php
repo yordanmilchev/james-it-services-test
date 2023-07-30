@@ -13,7 +13,7 @@ class TaskFactory extends Factory
 {
     protected $model = Task::class;
     /**
-     * Define the model's default state.
+     * Define the model's default state and data types.
      *
      * @return array<string, mixed>
      */

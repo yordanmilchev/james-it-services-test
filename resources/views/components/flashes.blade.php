@@ -1,3 +1,4 @@
+<!-- Begin dismissible alerts -->
 @if ($message = Session::get('success'))
     <div class="alert alert-outline-success alert-dismissible">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -34,3 +35,4 @@
         <strong>{{ $message }}</strong>
     </div>
 @endif
+<!-- End dismissible alerts -->

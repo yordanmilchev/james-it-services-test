@@ -2,12 +2,14 @@
 <html lang="en">
 
 <head>
+    <!-- Begin meta tags -->
     <meta charset="utf-8"/>
     <title>@yield('title', 'James IT Services')</title>
     <meta name="description" content="@yield('meta_description')">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="noindex">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- End meta tags -->
 
     @livewireStyles
 
@@ -106,6 +108,7 @@
 
     @livewireScripts
 
+    <!-- Begin livewire event listeners -->
     <script>
         window.addEventListener('closeModal', e => {
             $('.modal').modal('hide');
@@ -122,6 +125,7 @@
              }, 3000);
          });
     </script>
+    <!-- End livewire listeners -->
 
 
     <!--begin::Global Theme Bundle(used by all pages) -->

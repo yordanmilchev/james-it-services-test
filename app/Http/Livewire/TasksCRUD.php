@@ -14,13 +14,16 @@ class TasksCRUD extends Component
     use WithSorting;
 
     public $name, $editing, $confirming, $showFilters = false, $from_date, $to_date;
-
     public $rules = [
         'editing.name' => 'required|string|max:255',
         'editing.description' => 'required|string|min:10',
         'editing.due_date' => 'required|date|date_format:Y-m-d',
     ];
 
+    /**
+     * @return View
+     * Query database and return corresponding to the component blade
+     */
     public function render(): View
     {
         $tasksQb = Task::query();
@@ -48,21 +51,38 @@ class TasksCRUD extends Component
 
     protected $listeners = ['filtersCleared'];
 
+    /**
+     * @return void
+     * Set component properties to their initial state on filter clearing
+     */
     public function filtersCleared(): void
     {
         $this->resetExcept();
     }
 
+    /**
+     * @param Task $task
+     * @return void
+     * Bind specific task to component's editing property
+     */
     public function edit(Task $task): void
     {
         $this->editing = $task;
     }
 
+    /**
+     * @return void
+     * Bind new model instance to component's editing property
+     */
     public function create(): void
     {
         $this->editing = new Task();
     }
 
+    /**
+     * @return void
+     * Manually save task using save button located in modal
+     */
     public function save(): void
     {
         $this->validate();
@@ -72,6 +92,10 @@ class TasksCRUD extends Component
         $this->dispatchBrowserEvent('closeModal');
     }
 
+    /**
+     * @return void
+     * Automatically save task changes on input focus out if task exists in database
+     */
     public function updated(): void
     {
         if (isset($this->editing) && $this->editing->id){
@@ -83,16 +107,30 @@ class TasksCRUD extends Component
         }
     }
 
+    /**
+     * @param $task
+     * @return void
+     * Prompt user/change remove button to yes or no
+     */
     public function confirmDelete($task): void
     {
         $this->confirming = $task;
     }
 
+    /**
+     * @return void
+     * Return delete button to its original state
+     */
     public function cancelDelete(): void
     {
         $this->reset('confirming');
     }
 
+    /**
+     * @param Task $task
+     * @return void
+     * Delete task from database
+     */
     public function delete(Task $task): void
     {
         $this->editing = $task;
